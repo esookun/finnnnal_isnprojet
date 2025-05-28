@@ -7,6 +7,7 @@ import os
 from SessionSelecteur import SessionSelecteur
 
 PROFIL_FILE = "profil.json"
+STATE_FILE = "state.json"
 
 
 def make_circle_image(img, size=(100, 100)):
@@ -16,6 +17,7 @@ def make_circle_image(img, size=(100, 100)):
     ImageDraw.Draw(mask).ellipse((0, 0, *size), fill=255)
     img.putalpha(mask)
     return img
+
 
 def calculate_progress(csv_path):
     # Calcule le pourcentage de progrès basé sur le statut “Connait” dans un CSV
@@ -42,8 +44,9 @@ class Accueil(tk.Tk):
         self.title("Accueil")                    # Titre de la fenêtre
         self.geometry("500x400")                 # Taille initiale
 
-        # Réglages et profil chargé depuis JSON
-        self.reglage = {"csv_path": "", "mem_val": 0, "filter_val": 0}
+        # Chargement du state (day + csv_path)
+        state = self.load_state()
+        self.reglage = {"csv_path": state.get("csv_path", "")}
         self.profil = self.load_profil()
 
         # Références aux fenêtres secondaires
@@ -84,6 +87,16 @@ class Accueil(tk.Tk):
         tk.Label(self, textvariable=self.day_var, font=("Arial", 12)).place(x=200, y=45)
         tk.Button(self, text="+1 jour", command=self.increment_day, width=8).place(x=215, y=80)
 
+    def load_state(self):
+        # Charge le state depuis le fichier JSON (day + csv_path)
+        if os.path.exists(STATE_FILE):
+            try:
+                with open(STATE_FILE, "r", encoding="utf-8") as f:
+                    return json.load(f)
+            except Exception:
+                return {}
+        return {}
+
     # Gestion du profil     
     def load_profil(self):
         # Charge le profil depuis le fichier JSON ou valeurs par défaut
@@ -111,7 +124,7 @@ class Accueil(tk.Tk):
         with open(PROFIL_FILE, "w", encoding="utf-8") as f:
             json.dump(data, f, ensure_ascii=False, indent=2)
 
-#Ouverture des fenêtres secondaires
+    #Ouverture des fenêtres secondaires
     def open_reglage(self):
         if self._reglage_win and self._reglage_win.winfo_exists():
             self._reglage_win.lift(); return
@@ -135,7 +148,8 @@ class Accueil(tk.Tk):
         path = self.reglage.get("csv_path", "")
         progress = calculate_progress(path)
         CarteWindow(self, progress=progress)
-#Avatar et rafraîchissement
+
+    #Avatar et rafraîchissement
     def set_avatar(self, pil_img):
         self.profil["avatar_img"] = pil_img
         thumb = pil_img.resize((60, 60), Image.LANCZOS)
@@ -150,10 +164,11 @@ class Accueil(tk.Tk):
                 w.update_stats()
             else:
                 self.jouer_windows.remove(w)
-#Gestion du jour courant
+
+    #Gestion du jour courant
     def get_current_day(self):
         try:
-            with open("state.json", "r", encoding="utf-8") as f:
+            with open(STATE_FILE, "r", encoding="utf-8") as f:
                 return json.load(f).get("day", 1)
         except:
             return 1
@@ -162,16 +177,20 @@ class Accueil(tk.Tk):
         self.day_var.set(f"Jour actuel : {self.get_current_day()}")
 
     def increment_day(self):
-        path = self.reglage.get("csv_path", "")
         try:
-            with open("state.json", "r", encoding="utf-8") as f:
+            with open(STATE_FILE, "r", encoding="utf-8") as f:
                 state = json.load(f)
         except:
-            state = {"day": 1}
-        state["day"] += 1
-        with open("state.json", "w", encoding="utf-8") as f:
+            state = {"day": 1, "csv_path": self.reglage.get("csv_path", "")}
+        state["day"] = state.get("day", 1) + 1
+        # Préserve csv_path
+        if "csv_path" not in state:
+            state["csv_path"] = self.reglage.get("csv_path", "")
+        with open(STATE_FILE, "w", encoding="utf-8") as f:
             json.dump(state, f, indent=2, ensure_ascii=False)
 
+        # Mise à jour des données du CSV pour le jour
+        path = self.reglage.get("csv_path", "")
         if path:
             try:
                 rows = []
@@ -196,7 +215,6 @@ class Accueil(tk.Tk):
 
 class ReglageWindow(tk.Toplevel):
     def __init__(self, master):
-        # window
         super().__init__(master); self.master=master; self.title("Réglage")
         self.geometry("300x300")
 
@@ -211,7 +229,7 @@ class ReglageWindow(tk.Toplevel):
         path_label = tk.Label(self, textvariable=self.csv_path, wraplength=180, justify="center", fg="blue")
         path_label.pack(pady=(0, 15))
 
-        # button
+        # buttons
         btn_frame = tk.Frame(self)
         btn_frame.pack(pady=10)
         btn_save = tk.Button(btn_frame, text="Sauvegarder", width=18, height=2, command=self.save)
@@ -227,7 +245,19 @@ class ReglageWindow(tk.Toplevel):
             self.lift()
 
     def save(self):
-        self.master.reglage.update({"csv_path":self.csv_path.get()})
+        # Met à jour le chemin CSV en mémoire
+        self.master.reglage.update({"csv_path": self.csv_path.get()})
+        # Sauvegarde dans le state.json
+        try:
+            state = {}
+            if os.path.exists(STATE_FILE):
+                with open(STATE_FILE, "r", encoding="utf-8") as f:
+                    state = json.load(f)
+            state["csv_path"] = self.csv_path.get()
+            with open(STATE_FILE, "w", encoding="utf-8") as f:
+                json.dump(state, f, indent=2, ensure_ascii=False)
+        except Exception:
+            pass
         self.master.broadcast_refresh()
         messagebox.showinfo("Réglage","Modifications sauvegardées")
 
@@ -352,6 +382,7 @@ class CarteWindow(tk.Toplevel):
 
         tk.Label(self,text=f"Progrès: {int(progress*100)} %").pack(pady=(5,0))
         tk.Button(self,text="Fermer",command=self.destroy).pack(pady=5)
+
 
 if __name__ == "__main__":
     Accueil().mainloop()

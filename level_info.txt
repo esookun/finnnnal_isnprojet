@@ -1,2 +1,2 @@
 /Users/guo/Library/CloudStorage/OneDrive-INSALyon/INSA_FIMI_2A/isn2a2s/finnal_isnprojet/mots_initialises.csv
-10
+0
