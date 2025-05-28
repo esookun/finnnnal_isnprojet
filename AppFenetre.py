@@ -8,11 +8,9 @@ from SessionSelecteur import SessionSelecteur
 
 PROFIL_FILE = "profil.json"
 
-# -----------------------------------------------------------------------------
-#  Helper
-# -----------------------------------------------------------------------------
 
 def make_circle_image(img, size=(100, 100)):
+    # Redimensionne l’image, crée un masque circulaire et l’applique en transparence
     img = img.resize(size, Image.LANCZOS).convert("RGBA")
     mask = Image.new("L", size, 0)
     ImageDraw.Draw(mask).ellipse((0, 0, *size), fill=255)
@@ -20,6 +18,7 @@ def make_circle_image(img, size=(100, 100)):
     return img
 
 def calculate_progress(csv_path):
+    # Calcule le pourcentage de progrès basé sur le statut “Connait” dans un CSV
     if not csv_path:
         return 0.0
     try:
@@ -32,6 +31,7 @@ def calculate_progress(csv_path):
     except Exception:
         return 0.0
 
+
 # -----------------------------------------------------------------------------
 #  Root window – Accueil
 # -----------------------------------------------------------------------------
@@ -39,22 +39,26 @@ def calculate_progress(csv_path):
 class Accueil(tk.Tk):
     def __init__(self):
         super().__init__()
-        self.title("Accueil")
-        self.geometry("500x400")
+        self.title("Accueil")                    # Titre de la fenêtre
+        self.geometry("500x400")                 # Taille initiale
 
+        # Réglages et profil chargé depuis JSON
         self.reglage = {"csv_path": "", "mem_val": 0, "filter_val": 0}
         self.profil = self.load_profil()
 
+        # Références aux fenêtres secondaires
         self._reglage_win = None
         self._profil_win = None
         self.jouer_windows = []
 
+        # Boutons principaux
         btn_kwargs = {"width": 10, "height": 2}
         tk.Button(self, text="Réglage", command=self.open_reglage, **btn_kwargs).place(x=55, y=45)
         tk.Button(self, text="Jouer", command=self.open_jouer, **btn_kwargs).place(x=210, y=160)
         tk.Button(self, text="Carte", command=self.open_carte, **btn_kwargs).place(x=210, y=230)
         tk.Button(self, text="Quitter", command=self.destroy, **btn_kwargs).place(x=210, y=300)
 
+        # Affichage de l’avatar et du nom d’utilisateur
         frame = tk.Frame(self, width=60, height=80)
         frame.place(x=370, y=30)
         self.avatar_canvas = tk.Canvas(frame, width=60, height=60, highlightthickness=0)
@@ -66,6 +70,7 @@ class Accueil(tk.Tk):
         self.profil_label.pack(pady=(0,5))
         self.profil_label.bind("<Button-1>", self.open_profil)
 
+        # Chargement de l’avatar si existant
         if self.profil.get("avatar_path") and os.path.exists(self.profil["avatar_path"]):
             try:
                 img = make_circle_image(Image.open(self.profil["avatar_path"]), size=(60, 60))
@@ -73,47 +78,40 @@ class Accueil(tk.Tk):
             except Exception:
                 pass
 
+        # Affichage du “jour actuel” avec possibilité d’incrément
         self.day_var = tk.StringVar()
         self.update_day_label()
-
         tk.Label(self, textvariable=self.day_var, font=("Arial", 12)).place(x=200, y=45)
-        tk.Button(self, text="+1 jour", command=self.increment_day, width=8).place(x=215, y=80)    
-        
+        tk.Button(self, text="+1 jour", command=self.increment_day, width=8).place(x=215, y=80)
+
+    # Gestion du profil     
     def load_profil(self):
+        # Charge le profil depuis le fichier JSON ou valeurs par défaut
         if os.path.exists(PROFIL_FILE):
             with open(PROFIL_FILE, "r", encoding="utf-8") as f:
                 data = json.load(f)
             return {
                 "username": data.get("username", "Guo"),
                 "avatar_img": None,
-                "avatar_path": data.get("avatar_path"),
-                "maitrises": data.get("maitrises", 150),
-                "en_cours": data.get("en_cours", 40),
-                "non_appris": data.get("non_appris", {
-                    "mots verts": 23, "mots bleu": 58, "mots rouge": 275, "mots noire": 136
-                })
+                "avatar_path": data.get("avatar_path")
             }
         else:
             return {
                 "username": "Guo",
                 "avatar_img": None,
-                "avatar_path": None,
-                "maitrises": 150,
-                "en_cours": 40,
-                "non_appris": {"mots verts": 23, "mots bleu": 58, "mots rouge": 275, "mots noire": 136}
+                "avatar_path": None
             }
 
     def save_profil(self):
+        # Sauvegarde le nom d’utilisateur et le chemin d’avatar dans le JSON
         data = {
             "username": self.profil.get("username"),
-            "avatar_path": self.profil.get("avatar_path"),
-            "maitrises": self.profil.get("maitrises"),
-            "en_cours": self.profil.get("en_cours"),
-            "non_appris": self.profil.get("non_appris"),
+            "avatar_path": self.profil.get("avatar_path")
         }
         with open(PROFIL_FILE, "w", encoding="utf-8") as f:
             json.dump(data, f, ensure_ascii=False, indent=2)
 
+#Ouverture des fenêtres secondaires
     def open_reglage(self):
         if self._reglage_win and self._reglage_win.winfo_exists():
             self._reglage_win.lift(); return
@@ -137,7 +135,7 @@ class Accueil(tk.Tk):
         path = self.reglage.get("csv_path", "")
         progress = calculate_progress(path)
         CarteWindow(self, progress=progress)
-
+#Avatar et rafraîchissement
     def set_avatar(self, pil_img):
         self.profil["avatar_img"] = pil_img
         thumb = pil_img.resize((60, 60), Image.LANCZOS)
@@ -152,7 +150,7 @@ class Accueil(tk.Tk):
                 w.update_stats()
             else:
                 self.jouer_windows.remove(w)
-
+#Gestion du jour courant
     def get_current_day(self):
         try:
             with open("state.json", "r", encoding="utf-8") as f:
