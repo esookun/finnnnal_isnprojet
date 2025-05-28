@@ -1,6 +1,6 @@
 # isnprojet
 
-### flashcat
+## flashcat
 D'abord il faut lancer APPFenetre.py
 puis ajoutez mots_initialises.csv dans les reglages
 vous pouvez modifier le username aussi vous pouvez deposer une photo comme avatar
