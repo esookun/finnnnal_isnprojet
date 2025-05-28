@@ -6,8 +6,8 @@ puis ajoutez mots_initialises.csv dans les reglages
 vous pouvez modifier le username aussi vous pouvez deposer une photo comme avatar  
 
 ## initialisationCSV.py
-Ceci est un petit outil permettant de convertir un fichier CSV à deux colonnes en un fichier CSV à cinq colonnes, conforme aux exigences de cette application  
-(francais,anglais,maitrise,fois,jours depuis)
+Ceci est un petit outil permettant de convertir un fichier CSV à deux colonnes en un fichier CSV à cinq colonnes, conforme aux exigences de cette application    
+passer de(francais,anglais) à(francais,anglais,maitrise,fois,jours depuis)
 
 ## level_info.txt 
 1.path du mot_initialises.csv qui a 5 colonnes pour deduire les mots à apprendre  
