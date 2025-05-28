@@ -1,8 +1,8 @@
-musicien,musician,Connait,1,21
-enfant,child,Connait,1,21
-femme,woman,Connait,1,21
-village,village,Connait,1,21
-gare,train station,Connait,1,21
+musicien,musician,NonConnait,0,0
+enfant,child,NonConnait,0,0
+femme,woman,NonConnait,0,0
+village,village,NonConnait,0,0
+gare,train station,NonConnait,0,0
 orage,storm,NonConnait,0,0
 mère,mother,NonConnait,0,0
 homme,man,NonConnait,0,0
@@ -43,18 +43,18 @@ café,coffee,NonConnait,0,0
 jeune,young,NonConnait,0,0
 voiture,car,NonConnait,0,0
 drôle,funny,NonConnait,0,0
-été,summer,NonConnait,0,0
-lit,bed,NonConnait,0,0
-lait,milk,NonConnait,0,0
+été,summer,Connait,1,0
+lit,bed,Connait,1,0
+lait,milk,Connait,1,0
 semaine,week,NonConnait,0,0
 beurre,butter,NonConnait,0,0
-bébé,baby,NonConnait,0,0
-moto,motorcycle,NonConnait,0,0
-mois,month,NonConnait,0,0
-bateau,boat,NonConnait,0,0
-dessert,dessert,NonConnait,0,0
-papier,paper,NonConnait,0,0
-difficile,difficult,NonConnait,0,0
+bébé,baby,Connait,2,0
+moto,motorcycle,Connait,2,0
+mois,month,Connait,2,0
+bateau,boat,Connait,2,0
+dessert,dessert,Connait,2,0
+papier,paper,Connait,2,1
+difficile,difficult,Incertain,0,0
 poisson,fish,NonConnait,0,0
 famille,family,NonConnait,0,0
 lune,moon,NonConnait,0,0
