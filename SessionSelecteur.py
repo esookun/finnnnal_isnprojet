@@ -82,7 +82,8 @@ class SessionSelecteur(tk.Toplevel):
             bg="#dddddd",
             relief="raised"
         ).pack(pady=(10, 15))
-
+        
+    # AI generated code
     def start_level(self, level_num):
         try:
             # Écriture des informations de session dans un fichier
