@@ -1,2 +1,2 @@
-/Users/guo/Downloads/finnnnal_isnprojet/mots_initialises.csv
-3
+/Users/guo/Downloads/finnnnal_isnprojet/FC.csv
+4

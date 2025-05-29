@@ -44,7 +44,7 @@ class WordBank:
     def load_csv(cls, filename):
         words = []
         with open(filename, 'r', encoding='utf-8') as f:
-            reader = csv.reader(f)
+            reader = csv.reader(f, delimiter=';')
             for row in reader:
                 if len(row) < 5:
                     row += ['NonConnait', '0', '0']
@@ -54,7 +54,7 @@ class WordBank:
 
     def save_csv(self, filename):
         with open(filename, 'w', encoding='utf-8', newline='') as f:
-            writer = csv.writer(f)
+            writer = csv.writer(f, delimiter=';')
             for word in self.words:
                 writer.writerow(word.to_csv_row())
 

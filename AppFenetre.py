@@ -25,7 +25,7 @@ def calculate_progress(csv_path):
         return 0.0
     try:
         with open(csv_path, 'r', encoding='utf-8') as f:
-            reader = csv.reader(f)
+            reader = csv.reader(f, delimiter=';')
             rows = list(reader)
             total = len(rows) - 1 if rows else 0
             count = sum(1 for row in rows[1:] if len(row) >= 3 and row[2].strip() == 'Connait')
@@ -197,7 +197,7 @@ class Accueil(tk.Tk):
             try:
                 rows = []
                 with open(path, "r", encoding="utf-8") as f:
-                    reader = csv.reader(f)
+                    reader = csv.reader(f, delimiter=';')
                     for row in reader:
                         if len(row) < 5:
                             row += ['NonConnait', '0', '0']
@@ -205,7 +205,7 @@ class Accueil(tk.Tk):
                             row[4] = str(int(row[4]) + 1)
                         rows.append(row)
                 with open(path, "w", encoding="utf-8", newline="") as f:
-                    writer = csv.writer(f)
+                    writer = csv.writer(f, delimiter=';')
                     writer.writerows(rows)
             except Exception as e:
                 messagebox.showerror("Erreur", f"Impossible de mettre à jour les jours : {e}")
@@ -305,7 +305,7 @@ class ProfilWindow(tk.Toplevel):
         if csv_path and os.path.exists(csv_path):
             try:
                 with open(csv_path, 'r', encoding='utf-8') as f:
-                    reader = csv.reader(f)
+                    reader = csv.reader(f, delimiter=';')
                     for row in reader:
                         if len(row) >= 3:
                             if row[2].strip() == "Connait":

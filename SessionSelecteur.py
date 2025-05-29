@@ -23,7 +23,7 @@ class SessionSelecteur(tk.Toplevel):
         # Lecture du nombre total de mots dans le CSV
         try:
             with open(csv_path, "r", encoding="utf-8") as f:
-                rows = [row for row in csv.reader(f) if any(cell.strip() for cell in row)]
+                rows = [row for row in csv.reader(f, delimiter=';') if any(cell.strip() for cell in row)]
             total_words = len(rows)
         except:
             total_words = 0

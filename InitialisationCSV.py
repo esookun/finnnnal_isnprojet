@@ -1,25 +1,30 @@
-# Importation du module CSV
 import csv
+import json
 
-# Fichiers d'entrée et de sortie
-input_file = 'vocabulaire_flashcards_2colonnes.csv'
-output_file = 'mots_initialises.csv'
+with open('state.json', 'r', encoding='utf-8') as file:
+    data = json.load(file)
+    
+input_file = data["csv_path"]
 
-# Liste pour stocker les lignes initialisées
-initialized_rows = []
+# Liste temporaire pour stocker les données modifiées
+updated_data = []
+
 with open(input_file, 'r', encoding='utf-8') as infile:
-    # Lecture du CSV avec point-virgule comme délimiteur
     reader = csv.reader(infile, delimiter=';')
-    # Sauter l'en-tête
-    header = next(reader)
+    
     for row in reader:
         # Vérifier que la ligne contient au moins deux colonnes
         if len(row) >= 2:
-            french, english = row[0].strip(), row[1].strip()
-            # Ajouter les champs initiaux pour Connait/NonConnait et compteurs
-            initialized_rows.append([french, english, "NonConnait", "0", "0"])
+            french = row[0].strip()
+            english = row[1].strip()
+            # Ajouter les nouvelles colonnes à la ligne existante
+            updated_row = row[:2] + ["NonConnait", "0", "0"]
+            updated_data.append(updated_row)
 
-with open(output_file, 'w', encoding='utf-8', newline='') as outfile:
-    # Écriture des lignes initialisées dans le nouveau fichier CSV
-    writer = csv.writer(outfile)
-    writer.writerows(initialized_rows)
+# Écraser le fichier original avec les données mises à jour
+with open(input_file, 'w', encoding='utf-8', newline='') as outfile:
+    writer = csv.writer(outfile, delimiter=';')  
+    writer.writerows(updated_data)
+
+print(f"Le fichier {input_file} a été mis à jour avec succès!")
+print(f"Nombre de lignes traitées : {len(updated_data)}")
