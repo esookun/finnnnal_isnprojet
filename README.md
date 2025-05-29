@@ -30,7 +30,7 @@
 
 ## Flashcat
 1. First, you need to run `APPFenetre.py`  
-2. Then add the CSV file in the settings  
+2. Then add the CSV file in the settings(Reglages)  
 3. You can also modify the username and upload a photo as an avatar  
 4. *Initialiser* can be used to reset learning progress.  
 **Note:** After uploading a new CSV file, the progress is automatically reset.  
@@ -58,8 +58,8 @@
 
 ## Flashcat
 1. 首先运行 `APPFenetre.py`  
-2. 然后在设置中添加 CSV 文件  
-3. 你也可以修改用户名，或者上传一张照片作为头像
+2. 然后在设置(Reglages)中添加 CSV 文件  
+3. 你也可以点击头像修改用户名，或者上传一张照片作为头像
 4. Initialiser可以用来重制学习进度，注意重新上传csv文件后进度自动重制
 
 ## state.json
