@@ -84,9 +84,11 @@ class Accueil(tk.Tk):
         # Affichage du “jour actuel” avec possibilité d’incrément
         self.day_var = tk.StringVar()
         self.update_day_label()
+        self.bind("<FocusIn>", lambda e: self.update_day_label())
         tk.Label(self, textvariable=self.day_var, font=("Arial", 12)).place(x=200, y=45)
         tk.Button(self, text="+1 jour", command=self.increment_day, width=8).place(x=215, y=80)
 
+    
     def load_state(self):
         # Charge le state depuis le fichier JSON (day + csv_path)
         if os.path.exists(STATE_FILE):

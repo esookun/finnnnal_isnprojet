@@ -1,19 +1,18 @@
-import csv                                      
-import json                                     
-import tkinter as tk                            
-from tkinter import messagebox                  
-import os                                       
+import csv
+import json
+import tkinter as tk
+from tkinter import messagebox
+import os
 
 # Constantes
-STATE_FILE = 'level_info.txt'                   # Fichier stockant le chemin du CSV et le numéro de session
-PROGRESS_FILE = 'session_progress.json'         # Fichier stockant les sessions déjà complétées
+STATE_FILE = 'level_info.txt'                   # Chemin du CSV et numéro de session
+PROGRESS_FILE = 'session_progress.json'         # Sessions déjà complétées
 DAILY_REVIEW_LIMIT = None                       # Pas de limite quotidienne
 SESSION_SIZE = 5                                # Nombre de nouveaux mots par session
 KNOWN_INTERVALS = [1, 2, 4, 7, 15, 30]          # Intervalles de révision pour les mots connus
 
 class Word:
     def __init__(self, english, french, mastery='NonConnait', times=0, days_since=0):
-        # Initialise un objet mot avec anglais, français, niveau de maîtrise, nombre de répétitions, et jours depuis dernière révision
         self.english = english
         self.french = french
         self.mastery = mastery
@@ -21,7 +20,7 @@ class Word:
         self.days_since = int(days_since)
 
     def is_due(self):
-        # Détermine si le mot doit être revu, selon mastery et days_since
+        # Détermine si le mot doit être revu
         if self.times == 0:
             return False
         if self.mastery == 'Connait':
@@ -35,17 +34,14 @@ class Word:
         return self.days_since >= threshold
 
     def to_csv_row(self):
-        # Retourne la ligne CSV correspondante au mot
         return [self.french, self.english, self.mastery, str(self.times), str(self.days_since)]
 
 class WordBank:
     def __init__(self, words):
-        # Initialise la banque avec une liste d’objets Word
         self.words = words
         
     @classmethod
     def load_csv(cls, filename):
-        # Charge les mots depuis un fichier CSV
         words = []
         with open(filename, 'r', encoding='utf-8') as f:
             reader = csv.reader(f)
@@ -57,27 +53,23 @@ class WordBank:
         return cls(words)
 
     def save_csv(self, filename):
-        # Sauvegarde la liste de mots dans un fichier CSV
         with open(filename, 'w', encoding='utf-8', newline='') as f:
             writer = csv.writer(f)
             for word in self.words:
                 writer.writerow(word.to_csv_row())
 
     def increment_days(self):
-        # Incrémente le compteur days_since pour tous les mots déjà vus
         for w in self.words:
             if w.times > 0:
                 w.days_since += 1
 
     def get_words_for_session(self, session_number):
-        # Sélectionne les mots à réviser : mots dus et nouveaux mots de la session
         start_idx = (session_number - 1) * SESSION_SIZE
         session_words = self.words[start_idx : start_idx + SESSION_SIZE]
         review_candidates = [w for w in self.words if w.is_due()]
         return review_candidates + [w for w in session_words if w.times == 0]
 
 def load_session_info():
-    # Lit le fichier STATE_FILE pour récupérer le CSV et le numéro de session
     try:
         with open(STATE_FILE, 'r', encoding='utf-8') as f:
             lines = f.readlines()
@@ -85,10 +77,9 @@ def load_session_info():
             session_number = int(lines[1].strip())
             return csv_path, session_number
     except:
-        return "mots_initialises.csv", 1
+        return 'mots_initialises.csv', 1
 
 def record_session_completion(session_number):
-    # Enregistre la session complétée dans PROGRESS_FILE
     if os.path.exists(PROGRESS_FILE):
         with open(PROGRESS_FILE, 'r', encoding='utf-8') as f:
             completed = set(json.load(f))
@@ -98,30 +89,50 @@ def record_session_completion(session_number):
     with open(PROGRESS_FILE, 'w', encoding='utf-8') as f:
         json.dump(sorted(completed), f, indent=2)
 
+def increment_state_day():
+    """
+    Lire 'state.json' 中的 'day' 值，加 1 并写回文件。
+    如果文件不存在，则初始化 'day' 为 1。
+    """
+    STATE_JSON = 'state.json'
+    try:
+        if os.path.exists(STATE_JSON):
+            with open(STATE_JSON, 'r', encoding='utf-8') as sf:
+                data = json.load(sf)
+        else:
+            data = {}
+        current_day = data.get('day', 0)
+        data['day'] = current_day + 1
+        with open(STATE_JSON, 'w', encoding='utf-8') as sf:
+            json.dump(data, sf, indent=2)
+    except Exception:
+        # 如果更新失败，则忽略
+        pass
+
+
 def main():
-    # Fonction principale : charge l’état, prépare la session et gère l’interface
     CSV_FILE, session_number = load_session_info()
     wb = WordBank.load_csv(CSV_FILE)
     wb.increment_days()
     today_words = wb.get_words_for_session(session_number)
     current_list = today_words.copy()
     retry_list = []
+    # Liste pour enregistrer premier clic non-connait/incertain
+    first_feedback = []  # tuples (Word, 'Incertain'/'NonConnait')
 
-    # Initialisation de la fenêtre Tkinter
+    # Fenêtre Tkinter
     root = tk.Tk()
     root.title(f"Session {session_number}")
 
-    # Variables liées aux widgets
     eng_var, fr_var, prog_var = tk.StringVar(), tk.StringVar(), tk.StringVar()
     label_eng = tk.Label(root, textvariable=eng_var, font=("Arial", 22))
     label_fr  = tk.Label(root, textvariable=fr_var,  font=("Arial", 14))
     label_prog= tk.Label(root, textvariable=prog_var,font=("Arial", 10))
-    btn_show  = tk.Button(root, text="Afficher la signification", width=25, height=2)
-    btn_known = tk.Button(root, text="Je connais", width=25, height=2)
-    btn_fuzzy = tk.Button(root, text="Je suis incertain", width=25, height=2)
-    btn_unknown = tk.Button(root, text="Je ne connais pas", width=25, height=2)
+    btn_show   = tk.Button(root, text="Afficher la signification", width=25, height=2)
+    btn_known  = tk.Button(root, text="Je connais", width=25, height=2)
+    btn_fuzzy  = tk.Button(root, text="Je suis incertain", width=25, height=2)
+    btn_unknown= tk.Button(root, text="Je ne connais pas", width=25, height=2)
 
-    # Placement des widgets dans la grille
     label_eng.grid(row=0, column=0, columnspan=3, pady=10)
     label_fr.grid(row=1, column=0, columnspan=3, pady=5)
     btn_known.grid(row=3, column=0, padx=5, pady=10)
@@ -129,10 +140,9 @@ def main():
     btn_unknown.grid(row=3, column=2, padx=5, pady=10)
     label_prog.grid(row=4, column=0, columnspan=3, pady=5)
 
-    idx = 0  # index courant dans la liste de mots
+    idx = 0
 
     def show_word(i):
-        # Affiche le mot anglais et met à jour l’état
         nonlocal idx
         w = current_list[i]
         eng_var.set(w.english)
@@ -143,13 +153,16 @@ def main():
         prog_var.set(f"Mot {i+1}/{len(current_list)}")
 
     def reveal():
-        # Montre la traduction française
         fr_var.set(current_list[idx].french)
         btn_show.config(state=tk.DISABLED)
 
     def feedback(response):
-        # Traite le retour utilisateur (connait/incertain/nonConnait)
         w = current_list[idx]
+        # Enregistrer premier non-connait/incertain
+        if response != 'Je connais' and all(w is not fb[0] for fb in first_feedback):
+            val = 'Incertain' if response == 'Je suis incertain' else 'NonConnait'
+            first_feedback.append((w, val))
+        # Mettre à jour état pour session
         if response == 'Je connais':
             w.mastery = 'Connait'
             w.times += 1
@@ -163,7 +176,7 @@ def main():
         next_word()
 
     def next_word():
-        # Passe au mot suivant ou recommence les mots non maîtrisés
+        nonlocal idx
         if idx + 1 < len(current_list):
             show_word(idx + 1)
         else:
@@ -174,25 +187,33 @@ def main():
                 retry_list.clear()
                 show_word(0)
             else:
+                # 会话结束时先更新完成记录
                 record_session_completion(session_number)
+                # 然后更新 state.json 中的 day 值
+                increment_state_day()
                 messagebox.showinfo("Fini", "Session terminée avec succès !")
                 root.destroy()
 
-    # Liaison des boutons aux fonctions
     btn_show.config(command=reveal)
     btn_known.config(command=lambda: feedback("Je connais"))
     btn_fuzzy.config(command=lambda: feedback("Je suis incertain"))
     btn_unknown.config(command=lambda: feedback("Je ne connais pas"))
 
-    # Démarrage de la session ou message si aucun mot
     if current_list:
         show_word(0)
     else:
         messagebox.showinfo("Info", "Aucun mot pour cette session.")
+        # 即使无词也要更新天数
+        increment_state_day()
         root.destroy()
 
     root.mainloop()
+    # Avant de sauvegarder, restaurer mastery des premiers feedback
+    for w, val in first_feedback:
+        w.mastery = val
     wb.save_csv(CSV_FILE)
 
 if __name__ == '__main__':
     main()
+
+ 
