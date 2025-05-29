@@ -1,4 +1,5 @@
 import tkinter as tk
+import tkinter.messagebox
 import csv
 import subprocess
 import sys
@@ -14,9 +15,9 @@ class SessionSelecteur(tk.Toplevel):
     def __init__(self, master, csv_path):
         super().__init__(master)
         self.title("🎯 Choisir une session")
-        self.geometry("800x500")
+        self.geometry("700x700")
         self.configure(bg="#f0f0f0")
-        self.resizable(False, False)
+        self.resizable(True, True)
         self.csv_path = csv_path
 
         # Lecture du nombre total de mots dans le CSV
@@ -53,10 +54,33 @@ class SessionSelecteur(tk.Toplevel):
             bg="#f0f0f0"
         ).pack(pady=(15, 10))
 
-        # Cadre pour la grille des boutons
-        grid_frame = tk.Frame(self, bg="#ffffff", bd=2, relief="ridge")
-        grid_frame.pack(pady=10, padx=20, expand=True)
+        # Conteneur pour Canvas + Scrollbar
+        container = tk.Frame(self, bg="#f0f0f0")
+        container.pack(fill="both", expand=True, padx=20, pady=(0,10))
 
+        # Canvas pour le scroll
+        self.canvas = tk.Canvas(container, bg="#ffffff", highlightthickness=0)
+        vsb = tk.Scrollbar(container, orient="vertical", command=self.canvas.yview)
+        self.canvas.configure(yscrollcommand=vsb.set)
+
+        vsb.pack(side="right", fill="y")
+        self.canvas.pack(side="left", fill="both", expand=True)
+
+        # Frame interne où seront placés les boutons
+        grid_frame = tk.Frame(self.canvas, bg="#ffffff")
+        self.canvas.create_window((0, 0), window=grid_frame, anchor="nw")
+
+        # Mise à jour de la scrollregion à chaque redimensionnement du frame
+        def on_frame_configure(event):
+            self.canvas.configure(scrollregion=self.canvas.bbox("all"))
+        grid_frame.bind("<Configure>", on_frame_configure)
+
+        # Binder la molette de la souris pour scroller
+        def _on_mousewheel(event):
+            self.canvas.yview_scroll(int(-1*(event.delta/120)), "units")
+        self.canvas.bind_all("<MouseWheel>", _on_mousewheel)
+
+        # Génération des boutons de sessions en grille
         cols = 6  # Nombre de colonnes
         for i in range(self.levels):
             session_num = i + 1
@@ -101,3 +125,11 @@ class SessionSelecteur(tk.Toplevel):
             self.destroy()
         except Exception as e:
             tk.messagebox.showerror("Erreur", f"Impossible de démarrer la session:\n{e}")
+
+
+if __name__ == "__main__":
+    root = tk.Tk()
+    root.withdraw()  # on cache la fenêtre principale
+    # Exemple : passer le chemin vers votre CSV ici
+    selector = SessionSelecteur(root, "votre_fichier.csv")
+    selector.mainloop()
