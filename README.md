@@ -1,30 +1,30 @@
 # INTRO FR  
 
 ## Flashcat
-1. D'abord il faut lancer APPFenetre.py    
-2. puis ajoutez le fiche csv dans les reglages    
-3. vous pouvez modifier le username aussi vous pouvez deposer une photo comme avatar
-4. Initialiser peut être utilisé pour réinitialiser la progression d’apprentissage.  
-Attention : après avoir téléversé un nouveau fichier CSV, la progression est automatiquement réinitialisée.    
+1. D'abord, il faut lancer `APPFenetre.py`  
+2. Ensuite, ajoutez le fichier CSV dans les réglages  
+3. Vous pouvez modifier le nom d'utilisateur et également déposer une photo comme avatar  
+4. **Initialiser** peut être utilisé pour réinitialiser la progression d’apprentissage.  
+**Attention :** après avoir téléversé un nouveau fichier CSV, la progression est automatiquement réinitialisée.  
 
 ## state.json
-1. Le day qu'on peux le varier pour tester.    
-2. Path du fiche csv 
-3. sessions qu'on a fini.  
+1. Le champ `day` peut être modifié pour effectuer des tests  
+2. Chemin du fichier CSV  
+3. Sessions déjà terminées  
 
 ## profil.json
-1. username  
-2. avatar_path  
+1. `username`  
+2. `avatar_path`  
 
-## level_info.txt(aucune opération supplémentaire requise, laisser comme ça,)  
-1. path du fiche csv que on va apprendre.  
-2. numero du session que tu choissis maintenant.   
+## level_info.txt (aucune opération supplémentaire requise, laisser tel quel)  
+1. Chemin du fichier CSV à apprendre  
+2. Numéro de la session actuellement choisie  
 
-## ex_Français_English et ex_TJgaokao.csv    
-1. les deux fiche csv sont exemples des vocabulaire
+## ex_Français_English et ex_TJgaokao.csv  
+1. Les deux fichiers CSV sont des exemples de listes de vocabulaire  
 
 ## carte  
-1. progression actuelle  
+1. Progression actuelle   
 
 # INTRO EN  
 
