@@ -90,10 +90,8 @@ def record_session_completion(session_number):
         json.dump(sorted(completed), f, indent=2)
 
 def increment_state_day():
-    """
-    Lire 'state.json' 中的 'day' 值，加 1 并写回文件。
-    如果文件不存在，则初始化 'day' 为 1。
-    """
+    
+   
     STATE_JSON = 'state.json'
     try:
         if os.path.exists(STATE_JSON):
@@ -106,7 +104,7 @@ def increment_state_day():
         with open(STATE_JSON, 'w', encoding='utf-8') as sf:
             json.dump(data, sf, indent=2)
     except Exception:
-        # 如果更新失败，则忽略
+        
         pass
 
 
