@@ -1,13 +1,17 @@
 import csv
 import json
 
-with open('state.json', 'r', encoding='utf-8') as file:
-    data = json.load(file)
-    
-input_file = data["csv_path"]
-
 # Liste temporaire pour stocker les données modifiées
 updated_data = []
+
+with open('state.json', 'r', encoding='utf-8') as file:
+    data = json.load(file)
+input_file = data["csv_path"]
+
+data["session"] = []
+data["day"] = 1
+with open('state.json', "w", encoding="utf-8") as f:
+    json.dump(data, f, indent=2, ensure_ascii=False)
 
 with open(input_file, 'r', encoding='utf-8') as infile:
     reader = csv.reader(infile, delimiter=';')

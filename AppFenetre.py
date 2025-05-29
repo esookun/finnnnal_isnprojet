@@ -5,6 +5,8 @@ import csv
 import json
 import os
 from SessionSelecteur import SessionSelecteur
+import subprocess
+import sys
 
 PROFIL_FILE = "profil.json"
 STATE_FILE = "state.json"
@@ -218,7 +220,13 @@ class Accueil(tk.Tk):
 class ReglageWindow(tk.Toplevel):
     def __init__(self, master):
         super().__init__(master); self.master=master; self.title("Réglage")
-        self.geometry("300x300")
+        self.geometry("300x400")
+
+        # Frame pour le bouton "Initialiser"
+        init_frame = tk.Frame(self)
+        init_frame.pack(pady=(15, 5))  
+        btn_init = tk.Button(init_frame, text="Initialiser", width=18, height=2, command=self.run_initialiser)
+        btn_init.pack()
 
         # CSV upload
         row = tk.Frame(self)
@@ -239,12 +247,20 @@ class ReglageWindow(tk.Toplevel):
         btn_save.grid(row=0, column=0, padx=10)
         btn_close.grid(row=1, column=0, padx=10, pady=20)
 
+    def run_initialiser(self):
+        try:
+            subprocess.Popen([sys.executable, "InitialisationCSV.py"])
+        except Exception as e:
+            tk.messagebox.showerror("Erreur", f"Échec de l'initialisation : {e}")
+
     def upload_csv(self):
         p = filedialog.askopenfilename(parent=self, title="Choisissez CSV", filetypes=[("CSV", "*.csv")])
         if p:
             self.csv_path.set(p)
             self.master.reglage["csv_path"] = p
             self.lift()
+            self.run_initialiser()  # Lance l'initialisation après le chargement du CSV
+
 
     def save(self):
         # Met à jour le chemin CSV en mémoire

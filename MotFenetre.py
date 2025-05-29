@@ -5,11 +5,11 @@ from tkinter import messagebox
 import os
 
 # Constantes
-STATE_FILE = 'level_info.txt'                   # Chemin du CSV et numéro de session
-PROGRESS_FILE = 'session_progress.json'         # Sessions déjà complétées
+STATE_FILE_TXT = 'level_info.txt'                   # Chemin du CSV et numéro de session
 DAILY_REVIEW_LIMIT = None                       # Pas de limite quotidienne
 SESSION_SIZE = 5                                # Nombre de nouveaux mots par session
 KNOWN_INTERVALS = [1, 2, 4, 7, 15, 30]          # Intervalles de révision pour les mots connus
+STATE_FILE= 'state.json' 
 
 class Word:
     def __init__(self, english, french, mastery='NonConnait', times=0, days_since=0):
@@ -71,7 +71,7 @@ class WordBank:
 
 def load_session_info():
     try:
-        with open(STATE_FILE, 'r', encoding='utf-8') as f:
+        with open(STATE_FILE_TXT, 'r', encoding='utf-8') as f:
             lines = f.readlines()
             csv_path = lines[0].strip()
             session_number = int(lines[1].strip())
@@ -80,15 +80,19 @@ def load_session_info():
         return 'mots_initialises.csv', 1
 
 def record_session_completion(session_number):
-    if os.path.exists(PROGRESS_FILE):
-        with open(PROGRESS_FILE, 'r', encoding='utf-8') as f:
-            completed = set(json.load(f))
+    if os.path.exists(STATE_FILE):
+        with open(STATE_FILE, 'r', encoding='utf-8') as f:
+            state = json.load(f)
     else:
-        completed = set()
-    completed.add(session_number)
-    with open(PROGRESS_FILE, 'w', encoding='utf-8') as f:
-        json.dump(sorted(completed), f, indent=2)
+        state = {}
 
+    completed_sessions = set(state.get("session", []))
+    completed_sessions.add(session_number)
+
+    state["session"] = sorted(completed_sessions)
+    with open(STATE_FILE, 'w', encoding='utf-8') as f:
+        json.dump(state, f, indent=2, ensure_ascii=False)
+        
 def increment_state_day():
     
    

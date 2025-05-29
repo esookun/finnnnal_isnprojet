@@ -1,5 +1,4 @@
 import tkinter as tk
-import tkinter.messagebox
 import csv
 import subprocess
 import sys
@@ -9,13 +8,13 @@ import json
 
 # Nombre de mots par session
 SESSION_SIZE = 5
-PROGRESS_FILE = "session_progress.json"  
+STATE_FILE = "state.json" 
 
 class SessionSelecteur(tk.Toplevel):
     def __init__(self, master, csv_path):
         super().__init__(master)
         self.title("🎯 Choisir une session")
-        self.geometry("700x700")
+        self.geometry("700x500")
         self.configure(bg="#f0f0f0")
         self.resizable(True, True)
         self.csv_path = csv_path
@@ -32,18 +31,19 @@ class SessionSelecteur(tk.Toplevel):
         self.levels = max(1, math.ceil(total_words / SESSION_SIZE))
         self.create_ui()
 
-    def is_session_mastered(self, session_num):
+    def is_session_mastered(self,session_num):
         """
-        Retourne True si session_num figure dans session_progress.json
+        Retourne True si session_num figure dans le champ 'session' de state.json
         """
-        if not os.path.exists(PROGRESS_FILE):
+        if not os.path.exists(STATE_FILE):
             return False
         try:
-            with open(PROGRESS_FILE, "r", encoding="utf-8") as f:
-                completed = json.load(f)
+            with open(STATE_FILE, "r", encoding="utf-8") as f:
+                state = json.load(f)
+                completed_sessions = state.get("session", [])
         except:
             return False
-        return session_num in completed
+        return session_num in completed_sessions
 
     def create_ui(self):
         # En-tête de la fenêtre
