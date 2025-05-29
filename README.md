@@ -78,7 +78,7 @@ Attention : après avoir téléversé un nouveau fichier CSV, la progression est
 ## ex_Français_English 与 ex_TJgaokao.csv  
 1. 这两个 CSV 文件是词汇表的示例文件  
 
-# carte  
+## carte  
 1. 当前进度  
 
 
