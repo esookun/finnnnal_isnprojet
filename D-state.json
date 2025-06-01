@@ -1,5 +1,8 @@
 {
-  "day": 1,
+  "day": 8,
   "csv_path": "/Users/emma.skn_/finnnnal_isnprojet/ex_Français_English.csv",
-  "session": []
+  "session": [
+    2,
+    3
+  ]
 }
