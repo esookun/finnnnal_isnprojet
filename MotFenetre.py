@@ -12,7 +12,7 @@ KNOWN_INTERVALS = [1, 2, 4, 7, 15, 30]          # Intervalles de révision pour 
 STATE_FILE= 'state.json' 
 
 class Word:
-    def __init__(self, english, french, mastery='NonConnait', times=0, days_since=0):
+    def __init__(self, english, french, mastery='Non connu', times=0, days_since=0):
         self.english = english
         self.french = french
         self.mastery = mastery
@@ -23,10 +23,10 @@ class Word:
         # Détermine si le mot doit être revu
         if self.times == 0:
             return False
-        if self.mastery == 'Connait':
+        if self.mastery == 'Connu':
             idx = self.times - 1
             threshold = KNOWN_INTERVALS[idx] if idx < len(KNOWN_INTERVALS) else KNOWN_INTERVALS[-1]
-        elif self.mastery == 'Incertain':
+        elif self.mastery == 'En cours':
             idx = self.times - 2
             threshold = KNOWN_INTERVALS[idx] if 0 <= idx < len(KNOWN_INTERVALS) else 1
         else:
@@ -47,7 +47,7 @@ class WordBank:
             reader = csv.reader(f, delimiter=';')
             for row in reader:
                 if len(row) < 5:
-                    row += ['NonConnait', '0', '0']
+                    row += ['Non connu', '0', '0']
                 french, english, mastery, times, days_since = row
                 words.append(Word(english.strip(), french.strip(), mastery.strip(), times, days_since))
         return cls(words)
@@ -131,9 +131,9 @@ def main():
     label_fr  = tk.Label(root, textvariable=fr_var,  font=("Arial", 14))
     label_prog= tk.Label(root, textvariable=prog_var,font=("Arial", 10))
     btn_show   = tk.Button(root, text="Afficher la signification", width=25, height=2)
-    btn_known  = tk.Button(root, text="Je connais", width=25, height=2)
-    btn_fuzzy  = tk.Button(root, text="Je suis incertain", width=25, height=2)
-    btn_unknown= tk.Button(root, text="Je ne connais pas", width=25, height=2)
+    btn_known  = tk.Button(root, text="Mot facile", width=25, height=2)
+    btn_fuzzy  = tk.Button(root, text="Mot moyen", width=25, height=2)
+    btn_unknown= tk.Button(root, text="Mot difficile", width=25, height=2)
 
     label_eng.grid(row=0, column=0, columnspan=3, pady=10)
     label_fr.grid(row=1, column=0, columnspan=3, pady=5)
@@ -161,19 +161,19 @@ def main():
     def feedback(response):
         w = current_list[idx]
         # Enregistrer premier non-connait/incertain
-        if response != 'Je connais' and all(w is not fb[0] for fb in first_feedback):
-            val = 'Incertain' if response == 'Je suis incertain' else 'NonConnait'
+        if response != 'Mot facile ' and all(w is not fb[0] for fb in first_feedback):
+            val = 'En cours' if response == 'Mot moyen' else 'Non Connu'
             first_feedback.append((w, val))
         # Mettre à jour état pour session
-        if response == 'Je connais':
-            w.mastery = 'Connait'
+        if response == 'Mot facile':
+            w.mastery = 'Connu'
             w.times += 1
             w.days_since = 0
-        elif response == 'Je suis incertain':
-            w.mastery = 'Incertain'
+        elif response == 'Mot moyen':
+            w.mastery = 'En cours'
             retry_list.append(w)
         else:
-            w.mastery = 'NonConnait'
+            w.mastery = 'Non connu'
             retry_list.append(w)
         next_word()
 
