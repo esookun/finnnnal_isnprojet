@@ -22,7 +22,7 @@ with open(input_file, 'r', encoding='utf-8') as infile:
             french = row[0].strip()
             english = row[1].strip()
             # Ajouter les nouvelles colonnes à la ligne existante
-            updated_row = row[:2] + ["NonConnait", "0", "0"]
+            updated_row = row[:2] + ["Non connu", "0", "0"]
             updated_data.append(updated_row)
 
 # Écraser le fichier original avec les données mises à jour

@@ -1,5 +1,10 @@
 {
-  "day": 1,
-  "csv_path": "/Users/guo/Downloads/finnnnal_isnprojet/ex_Français_English.csv",
-  "session": []
+  "day": 19,
+  "csv_path": "/Users/emma.skn_/finnnnal_isnprojet/ex_Fran\u00e7ais_English.csv",
+  "session": [
+    2,
+    15,
+    16,
+    17
+  ]
 }

@@ -160,7 +160,7 @@ def main():
 
     def feedback(response):
         w = current_list[idx]
-        # Enregistrer premier non-connait/incertain
+        # Enregistrer premier non-connu/incertain
         if response != 'Mot facile ' and all(w is not fb[0] for fb in first_feedback):
             val = 'En cours' if response == 'Mot moyen' else 'Non Connu'
             first_feedback.append((w, val))
@@ -197,9 +197,9 @@ def main():
                 root.destroy()
 
     btn_show.config(command=reveal)
-    btn_known.config(command=lambda: feedback("Je connais"))
-    btn_fuzzy.config(command=lambda: feedback("Je suis incertain"))
-    btn_unknown.config(command=lambda: feedback("Je ne connais pas"))
+    btn_known.config(command=lambda: feedback("Mot facile"))
+    btn_fuzzy.config(command=lambda: feedback("Mot moyen"))
+    btn_unknown.config(command=lambda: feedback("Mot difficile"))
 
     if current_list:
         show_word(0)

@@ -3,11 +3,11 @@ enfant;child;NonConnait;0;0
 femme;woman;NonConnait;0;0
 village;village;NonConnait;0;0
 gare;train station;NonConnait;0;0
-orage;storm;NonConnait;0;0
-mère;mother;NonConnait;0;0
-homme;man;NonConnait;0;0
-carotte;carrot;NonConnait;0;0
-frère;brother;NonConnait;0;0
+orage;storm;Non Connu;3;2
+mère;mother;Non Connu;3;2
+homme;man;Non Connu;3;2
+carotte;carrot;Non Connu;3;2
+frère;brother;Non Connu;3;2
 ami;friend;NonConnait;0;0
 restaurant;restaurant;NonConnait;0;0
 neige;snow;NonConnait;0;0
@@ -68,21 +68,21 @@ soleil;sun;NonConnait;0;0
 montagne;mountain;NonConnait;0;0
 menu;menu;NonConnait;0;0
 armoire;wardrobe;NonConnait;0;0
-eau;water;NonConnait;0;0
-printemps;spring;NonConnait;0;0
-livre;book;NonConnait;0;0
-demain;tomorrow;NonConnait;0;0
-heureux;happy;NonConnait;0;0
-école;school;NonConnait;0;0
-thé;tea;NonConnait;0;0
-pomme;apple;NonConnait;0;0
-hiver;winter;NonConnait;0;0
-porte;door;NonConnait;0;0
-policier;policeman;NonConnait;0;0
-déjeuner;lunch;NonConnait;0;0
-pont;bridge;NonConnait;0;0
-grand;big;NonConnait;0;0
-mur;wall;NonConnait;0;0
+eau;water;En cours;1;2
+printemps;spring;En cours;1;2
+livre;book;Non Connu;1;2
+demain;tomorrow;Non Connu;1;2
+heureux;happy;Non Connu;1;2
+école;school;Non Connu;3;2
+thé;tea;Non Connu;3;2
+pomme;apple;Non Connu;3;2
+hiver;winter;Non Connu;3;2
+porte;door;Non Connu;3;2
+policier;policeman;Non Connu;2;2
+déjeuner;lunch;Non Connu;2;2
+pont;bridge;En cours;2;2
+grand;big;En cours;2;2
+mur;wall;En cours;2;2
 voyage;trip;NonConnait;0;0
 supermarché;supermarket;NonConnait;0;0
 fruit;fruit;NonConnait;0;0
