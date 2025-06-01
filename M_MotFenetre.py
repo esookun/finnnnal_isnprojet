@@ -12,7 +12,7 @@ KNOWN_INTERVALS = [1, 2, 4, 7, 15, 30]          # Intervalles de révision pour 
 STATE_FILE= 'state.json' 
 
 class Word:
-    def __init__(self, english, french, mastery='Non connu', times=0, days_since=0):
+    def __init__(self, english, french, mastery='Nonconnu', times=0, days_since=0):
         self.english = english
         self.french = french
         self.mastery = mastery
@@ -47,7 +47,7 @@ class WordBank:
             reader = csv.reader(f, delimiter=';')
             for row in reader:
                 if len(row) < 5:
-                    row += ['Non connu', '0', '0']
+                    row += ['Nonconnu', '0', '0']
                 french, english, mastery, times, days_since = row
                 words.append(Word(english.strip(), french.strip(), mastery.strip(), times, days_since))
         return cls(words)
@@ -162,7 +162,7 @@ def main():
         w = current_list[idx]
         # Enregistrer premier non-connu/incertain
         if response != 'Mot facile ' and all(w is not fb[0] for fb in first_feedback):
-            val = 'En cours' if response == 'Mot moyen' else 'Non Connu'
+            val = 'En cours' if response == 'Mot moyen' else 'NonConnu'
             first_feedback.append((w, val))
         # Mettre à jour état pour session
         if response == 'Mot facile':
