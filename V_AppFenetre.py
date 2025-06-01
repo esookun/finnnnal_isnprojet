@@ -30,7 +30,7 @@ def calculate_progress(csv_path):
             reader = csv.reader(f, delimiter=';')
             rows = list(reader)
             total = len(rows) - 1 if rows else 0
-            count = sum(1 for row in rows[1:] if len(row) >= 3 and row[2].strip() == 'Connait')
+            count = sum(1 for row in rows[1:] if len(row) >= 3 and row[2].strip() == 'Connu')
             return count / total if total else 0.0
     except Exception:
         return 0.0
@@ -202,7 +202,7 @@ class Accueil(tk.Tk):
                     reader = csv.reader(f, delimiter=';')
                     for row in reader:
                         if len(row) < 5:
-                            row += ['NonConnait', '0', '0']
+                            row += ['NonConnu', '0', '0']
                         if int(row[3]) > 0:
                             row[4] = str(int(row[4]) + 1)
                         rows.append(row)
@@ -249,7 +249,7 @@ class ReglageWindow(tk.Toplevel):
 
     def run_initialiser(self):
         try:
-            subprocess.Popen([sys.executable, "InitialisationCSV.py"])
+            subprocess.Popen([sys.executable, "M_InitialisationCSV.py"])
         except Exception as e:
             tk.messagebox.showerror("Erreur", f"Échec de l'initialisation : {e}")
 

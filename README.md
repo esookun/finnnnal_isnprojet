@@ -1,5 +1,10 @@
 # INTRO FR  
 
+Les fichiers sont nommés selon la convention MVC :
+1. M_ correspondent aux fichiers Modèle
+2. V_ au visuel
+3. C_ au controleur 
+
 ## Flashcat
 1. D'abord, il faut lancer `V_APPFenetre.py`  
 2. Ensuite, ajoutez le fichier CSV dans les réglages (D-ex_Français_English.csv)
