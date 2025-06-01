@@ -32,3 +32,11 @@ with open(input_file, 'w', encoding='utf-8', newline='') as outfile:
 
 print(f"Le fichier {input_file} a été mis à jour avec succès!")
 print(f"Nombre de lignes traitées : {len(updated_data)}")
+
+# Vérification rapide après écriture
+with open(input_file, 'r', encoding='utf-8') as check_file:
+    print("Aperçu du fichier après mise à jour :")
+    for i, row in enumerate(csv.reader(check_file, delimiter=';')):
+        print(row)
+        if i >= 2:
+            break

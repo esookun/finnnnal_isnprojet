@@ -1,190 +1,190 @@
-musicien;musician;NonConnait;0;0
-enfant;child;NonConnait;0;0
-femme;woman;NonConnait;0;0
-village;village;NonConnait;0;0
-gare;train station;NonConnait;0;0
-orage;storm;Non Connu;3;2
-mère;mother;Non Connu;3;2
-homme;man;Non Connu;3;2
-carotte;carrot;Non Connu;3;2
-frère;brother;Non Connu;3;2
-ami;friend;NonConnait;0;0
-restaurant;restaurant;NonConnait;0;0
-neige;snow;NonConnait;0;0
-avion;plane;NonConnait;0;0
-salade;salad;NonConnait;0;0
-peur;scared;NonConnait;0;0
-chocolat;chocolate;NonConnait;0;0
-plafond;ceiling;NonConnait;0;0
-triste;sad;NonConnait;0;0
-fleur;flower;NonConnait;0;0
-écrivain;writer;NonConnait;0;0
-prix;price;NonConnait;0;0
-vendeur;seller;NonConnait;0;0
-marché;market;NonConnait;0;0
-hier;yesterday;NonConnait;0;0
-beau;beautiful;NonConnait;0;0
-poivre;pepper;NonConnait;0;0
-fenêtre;window;NonConnait;0;0
-glace;ice cream;NonConnait;0;0
-escaliers;stairs;NonConnait;0;0
-fatigué;tired;NonConnait;0;0
-sel;salt;NonConnait;0;0
-année;year;NonConnait;0;0
-forêt;forest;NonConnait;0;0
-chat;cat;NonConnait;0;0
-laid;ugly;NonConnait;0;0
-jour;day;NonConnait;0;0
-automne;autumn;NonConnait;0;0
-danseur;dancer;NonConnait;0;0
-fromage;cheese;NonConnait;0;0
-intelligent;smart;NonConnait;0;0
-café;coffee;NonConnait;0;0
-jeune;young;NonConnait;0;0
-voiture;car;NonConnait;0;0
-drôle;funny;NonConnait;0;0
-été;summer;NonConnait;0;0
-lit;bed;NonConnait;0;0
-lait;milk;NonConnait;0;0
-semaine;week;NonConnait;0;0
-beurre;butter;NonConnait;0;0
-bébé;baby;NonConnait;0;0
-moto;motorcycle;NonConnait;0;0
-mois;month;NonConnait;0;0
-bateau;boat;NonConnait;0;0
-dessert;dessert;NonConnait;0;0
-papier;paper;NonConnait;0;0
-difficile;difficult;NonConnait;0;0
-poisson;fish;NonConnait;0;0
-famille;family;NonConnait;0;0
-lune;moon;NonConnait;0;0
-poste;post office;NonConnait;0;0
-café;cafe;NonConnait;0;0
-temps;weather;NonConnait;0;0
-petit;small;NonConnait;0;0
-route;road;NonConnait;0;0
-achat;purchase;NonConnait;0;0
-soleil;sun;NonConnait;0;0
-montagne;mountain;NonConnait;0;0
-menu;menu;NonConnait;0;0
-armoire;wardrobe;NonConnait;0;0
-eau;water;En cours;1;2
-printemps;spring;En cours;1;2
-livre;book;Non Connu;1;2
-demain;tomorrow;Non Connu;1;2
-heureux;happy;Non Connu;1;2
-école;school;Non Connu;3;2
-thé;tea;Non Connu;3;2
-pomme;apple;Non Connu;3;2
-hiver;winter;Non Connu;3;2
-porte;door;Non Connu;3;2
-policier;policeman;Non Connu;2;2
-déjeuner;lunch;Non Connu;2;2
-pont;bridge;En cours;2;2
-grand;big;En cours;2;2
-mur;wall;En cours;2;2
-voyage;trip;NonConnait;0;0
-supermarché;supermarket;NonConnait;0;0
-fruit;fruit;NonConnait;0;0
-sympa;nice;NonConnait;0;0
-intéressant;interesting;NonConnait;0;0
-facile;easy;NonConnait;0;0
-arbre;tree;NonConnait;0;0
-artiste;artist;NonConnait;0;0
-ciel;sky;NonConnait;0;0
-stylo;pen;NonConnait;0;0
-magasin;store;NonConnait;0;0
-nuit;night;NonConnait;0;0
-table;table;NonConnait;0;0
-sol;floor;NonConnait;0;0
-jus;juice;NonConnait;0;0
-docteur;doctor;NonConnait;0;0
-église;church;NonConnait;0;0
-musée;museum;NonConnait;0;0
-vin;wine;NonConnait;0;0
-tempête;tempest;NonConnait;0;0
-voiture;car;NonConnait;0;0
-jardin;garden;NonConnait;0;0
-riz;rice;NonConnait;0;0
-pâtes;pasta;NonConnait;0;0
-aéroport;airport;NonConnait;0;0
-joie;joy;NonConnait;0;0
-gâteau;cake;NonConnait;0;0
-proche;near;NonConnait;0;0
-rapide;fast;NonConnait;0;0
-méchant;mean;NonConnait;0;0
-cinéma;cinema;NonConnait;0;0
-viande;meat;NonConnait;0;0
-bus;bus;NonConnait;0;0
-étoile;star;NonConnait;0;0
-fort;strong;NonConnait;0;0
-vent;wind;NonConnait;0;0
-soir;evening;NonConnait;0;0
-infirmier;nurse;NonConnait;0;0
-ennuyeux;boring;NonConnait;0;0
-hôpital;hospital;NonConnait;0;0
-serveur;waiter;NonConnait;0;0
-chanteur;singer;NonConnait;0;0
-matin;morning;NonConnait;0;0
-miroir;mirror;NonConnait;0;0
-loin;far;NonConnait;0;0
-ordinateur;computer;NonConnait;0;0
-vacances;holiday;NonConnait;0;0
-haine;hate;NonConnait;0;0
-amour;love;NonConnait;0;0
-hôtel;hotel;NonConnait;0;0
-huile;oil;NonConnait;0;0
-boulangerie;bakery;NonConnait;0;0
-argent;money;NonConnait;0;0
-professeur;teacher;NonConnait;0;0
-vélo;bike;NonConnait;0;0
-élève;student;NonConnait;0;0
-repas;meal;NonConnait;0;0
-pharmacie;pharmacy;NonConnait;0;0
-chaise;chair;NonConnait;0;0
-poulet;chicken;NonConnait;0;0
-important;important;NonConnait;0;0
-lent;slow;NonConnait;0;0
-chaud;hot;NonConnait;0;0
-légume;vegetable;NonConnait;0;0
-nuage;cloud;NonConnait;0;0
-sucre;sugar;NonConnait;0;0
-pompier;firefighter;NonConnait;0;0
-mer;sea;NonConnait;0;0
-pluie;rain;NonConnait;0;0
-cuisinier;cook;NonConnait;0;0
-parc;park;NonConnait;0;0
-aujourd'hui;today;NonConnait;0;0
-père;father;NonConnait;0;0
-bas;low;NonConnait;0;0
-station;station;NonConnait;0;0
-froid;cold;NonConnait;0;0
-fâché;angry;NonConnait;0;0
-université;university;NonConnait;0;0
-eau;water;NonConnait;0;0
-train;train;NonConnait;0;0
-bière;beer;NonConnait;0;0
-acteur;actor;NonConnait;0;0
-plaisir;pleasure;NonConnait;0;0
-ville;city;NonConnait;0;0
-téléphone;phone;NonConnait;0;0
-banque;bank;NonConnait;0;0
-douleur;pain;NonConnait;0;0
-boisson;drink;NonConnait;0;0
-banane;banana;NonConnait;0;0
-maison;house;NonConnait;0;0
-haut;high;NonConnait;0;0
-saison;season;NonConnait;0;0
-dîner;dinner;NonConnait;0;0
-rivière;river;NonConnait;0;0
-sœur;sister;NonConnait;0;0
-chien;dog;NonConnait;0;0
-rue;street;NonConnait;0;0
-tomate;tomato;NonConnait;0;0
-bonbon;candy;NonConnait;0;0
-petit-déjeuner;breakfast;NonConnait;0;0
-vieux;old;NonConnait;0;0
-pain;bread;NonConnait;0;0
-faible;weak;NonConnait;0;0
-œuf;egg;NonConnait;0;0
-bête;stupid;NonConnait;0;0
+musicien;musician;Non connu;0;0
+enfant;child;Non connu;0;0
+femme;woman;Non connu;0;0
+village;village;Non connu;0;0
+gare;train station;Non connu;0;0
+orage;storm;Non connu;0;0
+mère;mother;Non connu;0;0
+homme;man;Non connu;0;0
+carotte;carrot;Non connu;0;0
+frère;brother;Non connu;0;0
+ami;friend;Non connu;0;0
+restaurant;restaurant;Non connu;0;0
+neige;snow;Non connu;0;0
+avion;plane;Non connu;0;0
+salade;salad;Non connu;0;0
+peur;scared;Non connu;0;0
+chocolat;chocolate;Non connu;0;0
+plafond;ceiling;Non connu;0;0
+triste;sad;Non connu;0;0
+fleur;flower;Non connu;0;0
+écrivain;writer;Non connu;0;0
+prix;price;Non connu;0;0
+vendeur;seller;Non connu;0;0
+marché;market;Non connu;0;0
+hier;yesterday;Non connu;0;0
+beau;beautiful;Non connu;0;0
+poivre;pepper;Non connu;0;0
+fenêtre;window;Non connu;0;0
+glace;ice cream;Non connu;0;0
+escaliers;stairs;Non connu;0;0
+fatigué;tired;Non connu;0;0
+sel;salt;Non connu;0;0
+année;year;Non connu;0;0
+forêt;forest;Non connu;0;0
+chat;cat;Non connu;0;0
+laid;ugly;Non connu;0;0
+jour;day;Non connu;0;0
+automne;autumn;Non connu;0;0
+danseur;dancer;Non connu;0;0
+fromage;cheese;Non connu;0;0
+intelligent;smart;Non connu;0;0
+café;coffee;Non connu;0;0
+jeune;young;Non connu;0;0
+voiture;car;Non connu;0;0
+drôle;funny;Non connu;0;0
+été;summer;Non connu;0;0
+lit;bed;Non connu;0;0
+lait;milk;Non connu;0;0
+semaine;week;Non connu;0;0
+beurre;butter;Non connu;0;0
+bébé;baby;Non connu;0;0
+moto;motorcycle;Non connu;0;0
+mois;month;Non connu;0;0
+bateau;boat;Non connu;0;0
+dessert;dessert;Non connu;0;0
+papier;paper;Non connu;0;0
+difficile;difficult;Non connu;0;0
+poisson;fish;Non connu;0;0
+famille;family;Non connu;0;0
+lune;moon;Non connu;0;0
+poste;post office;Non connu;0;0
+café;cafe;Non connu;0;0
+temps;weather;Non connu;0;0
+petit;small;Non connu;0;0
+route;road;Non connu;0;0
+achat;purchase;Non connu;0;0
+soleil;sun;Non connu;0;0
+montagne;mountain;Non connu;0;0
+menu;menu;Non connu;0;0
+armoire;wardrobe;Non connu;0;0
+eau;water;Non connu;0;0
+printemps;spring;Non connu;0;0
+livre;book;Non connu;0;0
+demain;tomorrow;Non connu;0;0
+heureux;happy;Non connu;0;0
+école;school;Non connu;0;0
+thé;tea;Non connu;0;0
+pomme;apple;Non connu;0;0
+hiver;winter;Non connu;0;0
+porte;door;Non connu;0;0
+policier;policeman;Non connu;0;0
+déjeuner;lunch;Non connu;0;0
+pont;bridge;Non connu;0;0
+grand;big;Non connu;0;0
+mur;wall;Non connu;0;0
+voyage;trip;Non connu;0;0
+supermarché;supermarket;Non connu;0;0
+fruit;fruit;Non connu;0;0
+sympa;nice;Non connu;0;0
+intéressant;interesting;Non connu;0;0
+facile;easy;Non connu;0;0
+arbre;tree;Non connu;0;0
+artiste;artist;Non connu;0;0
+ciel;sky;Non connu;0;0
+stylo;pen;Non connu;0;0
+magasin;store;Non connu;0;0
+nuit;night;Non connu;0;0
+table;table;Non connu;0;0
+sol;floor;Non connu;0;0
+jus;juice;Non connu;0;0
+docteur;doctor;Non connu;0;0
+église;church;Non connu;0;0
+musée;museum;Non connu;0;0
+vin;wine;Non connu;0;0
+tempête;tempest;Non connu;0;0
+voiture;car;Non connu;0;0
+jardin;garden;Non connu;0;0
+riz;rice;Non connu;0;0
+pâtes;pasta;Non connu;0;0
+aéroport;airport;Non connu;0;0
+joie;joy;Non connu;0;0
+gâteau;cake;Non connu;0;0
+proche;near;Non connu;0;0
+rapide;fast;Non connu;0;0
+méchant;mean;Non connu;0;0
+cinéma;cinema;Non connu;0;0
+viande;meat;Non connu;0;0
+bus;bus;Non connu;0;0
+étoile;star;Non connu;0;0
+fort;strong;Non connu;0;0
+vent;wind;Non connu;0;0
+soir;evening;Non connu;0;0
+infirmier;nurse;Non connu;0;0
+ennuyeux;boring;Non connu;0;0
+hôpital;hospital;Non connu;0;0
+serveur;waiter;Non connu;0;0
+chanteur;singer;Non connu;0;0
+matin;morning;Non connu;0;0
+miroir;mirror;Non connu;0;0
+loin;far;Non connu;0;0
+ordinateur;computer;Non connu;0;0
+vacances;holiday;Non connu;0;0
+haine;hate;Non connu;0;0
+amour;love;Non connu;0;0
+hôtel;hotel;Non connu;0;0
+huile;oil;Non connu;0;0
+boulangerie;bakery;Non connu;0;0
+argent;money;Non connu;0;0
+professeur;teacher;Non connu;0;0
+vélo;bike;Non connu;0;0
+élève;student;Non connu;0;0
+repas;meal;Non connu;0;0
+pharmacie;pharmacy;Non connu;0;0
+chaise;chair;Non connu;0;0
+poulet;chicken;Non connu;0;0
+important;important;Non connu;0;0
+lent;slow;Non connu;0;0
+chaud;hot;Non connu;0;0
+légume;vegetable;Non connu;0;0
+nuage;cloud;Non connu;0;0
+sucre;sugar;Non connu;0;0
+pompier;firefighter;Non connu;0;0
+mer;sea;Non connu;0;0
+pluie;rain;Non connu;0;0
+cuisinier;cook;Non connu;0;0
+parc;park;Non connu;0;0
+aujourd'hui;today;Non connu;0;0
+père;father;Non connu;0;0
+bas;low;Non connu;0;0
+station;station;Non connu;0;0
+froid;cold;Non connu;0;0
+fâché;angry;Non connu;0;0
+université;university;Non connu;0;0
+eau;water;Non connu;0;0
+train;train;Non connu;0;0
+bière;beer;Non connu;0;0
+acteur;actor;Non connu;0;0
+plaisir;pleasure;Non connu;0;0
+ville;city;Non connu;0;0
+téléphone;phone;Non connu;0;0
+banque;bank;Non connu;0;0
+douleur;pain;Non connu;0;0
+boisson;drink;Non connu;0;0
+banane;banana;Non connu;0;0
+maison;house;Non connu;0;0
+haut;high;Non connu;0;0
+saison;season;Non connu;0;0
+dîner;dinner;Non connu;0;0
+rivière;river;Non connu;0;0
+sœur;sister;Non connu;0;0
+chien;dog;Non connu;0;0
+rue;street;Non connu;0;0
+tomate;tomato;Non connu;0;0
+bonbon;candy;Non connu;0;0
+petit-déjeuner;breakfast;Non connu;0;0
+vieux;old;Non connu;0;0
+pain;bread;Non connu;0;0
+faible;weak;Non connu;0;0
+œuf;egg;Non connu;0;0
+bête;stupid;Non connu;0;0
