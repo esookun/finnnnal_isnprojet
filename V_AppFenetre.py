@@ -4,7 +4,7 @@ from PIL import Image, ImageTk, ImageDraw
 import csv
 import json
 import os
-from SessionSelecteur import SessionSelecteur
+from C_SessionSelecteur import SessionSelecteur
 import subprocess
 import sys
 

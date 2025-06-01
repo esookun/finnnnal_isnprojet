@@ -1,7 +1,7 @@
 # INTRO FR  
 
 ## Flashcat
-1. D'abord, il faut lancer `APPFenetre.py`  
+1. D'abord, il faut lancer `V_APPFenetre.py`  
 2. Ensuite, ajoutez le fichier CSV dans les réglages (D-ex_Français_English.csv)
 3. Vous pouvez modifier le nom d'utilisateur et également déposer une photo comme avatar  
 4. **Initialiser** peut être utilisé pour réinitialiser la progression d’apprentissage.  
